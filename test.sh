@@ -1,0 +1,1 @@
+mysql prtserv -e "select printer.pname,pqueue.psvc,count(*),rand() as rnd from spooler left join pqjob using (sn) left join pqueue using (qid) left join printer using (qid) where printer.pstate = 1 and spooler.spst = 0 and (spooler.pid = 0 or printer.pid = spooler.pid) group by (pname) order by rnd"
